@@ -16,11 +16,11 @@ buttons.forEach((button) => {
 		} else if (button.classList.contains("calculator__button--operator")) {
 			handleOperator(value);
 		} else if (button.classList.contains("calculator__button--equal")) {
-			console.log("equals");
+			handleEquals();
 		} else if (button.classList.contains("calculator__button--clear")) {
-			console.log("clear");
+			handleClear();
 		} else if (button.classList.contains("calculator__button--delete")) {
-			console.log("delete");
+			handleDelete();
 		}
 	});
 });
@@ -76,6 +76,39 @@ const handleOperator = (operator) => {
 
 	currentOperation = operator;
 	updateDisplay();
+};
+
+const handleEquals = () => {
+	if (!firstNumber || !currentOperation || currentInput === "") return;
+
+	secondNumber = currentInput;
+	const result = calculator(Number(firstNumber), Number(secondNumber));
+
+	displayInput.textContent = result;
+	displayOperation.textContent = `${firstNumber} ${getSymbol(
+		currentOperation
+	)} ${secondNumber} =`;
+
+	firstNumber = String(result);
+	secondNumber = "";
+	currentInput = "";
+	currentOperation = "";
+};
+
+const handleClear = () => {
+	firstNumber = "";
+	secondNumber = "";
+	currentInput = "";
+	currentOperation = "";
+
+	updateDisplay();
+};
+
+const handleDelete = () => {
+	if (currentInput) {
+		currentInput = currentInput.slice(0, -1);
+		updateDisplay();
+	}
 };
 
 const add = (number1, number2) => {
