@@ -14,7 +14,7 @@ buttons.forEach((button) => {
 		if ((value >= "0" && value <= "9") || value === ".") {
 			handleNumber(value);
 		} else if (button.classList.contains("calculator__button--operator")) {
-			console.log(value);
+			handleOperator(value);
 		} else if (button.classList.contains("calculator__button--equal")) {
 			console.log("equals");
 		} else if (button.classList.contains("calculator__button--clear")) {
@@ -58,6 +58,24 @@ const updateDisplay = () => {
 	} else {
 		displayOperation.textContent = "";
 	}
+};
+
+const handleOperator = (operator) => {
+	if (currentInput === "") return;
+
+	if (firstNumber && currentOperation) {
+		secondNumber = currentInput;
+		firstNumber = String(
+			calculator(Number(firstNumber), Number(secondNumber))
+		);
+		currentInput = "";
+	} else {
+		firstNumber = currentInput;
+		currentInput = "";
+	}
+
+	currentOperation = operator;
+	updateDisplay();
 };
 
 const add = (number1, number2) => {
