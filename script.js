@@ -2,7 +2,7 @@ const displayOperation = document.querySelector(".calculator__operation");
 const displayInput = document.querySelector(".calculator__input");
 const buttons = document.querySelectorAll("button");
 
-let currentOperation = "+";
+let currentOperation = "";
 let firstNumber = "";
 let secondNumber = "";
 let currentInput = "";
