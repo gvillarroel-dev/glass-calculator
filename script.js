@@ -1,4 +1,64 @@
-let currentOperation = "";
+const displayOperation = document.querySelector(".calculator__operation");
+const displayInput = document.querySelector(".calculator__input");
+const buttons = document.querySelectorAll("button");
+
+let currentOperation = "+";
+let firstNumber = "";
+let secondNumber = "";
+let currentInput = "";
+
+buttons.forEach((button) => {
+	button.addEventListener("click", (e) => {
+		const value = e.target.value;
+
+		if ((value >= "0" && value <= "9") || value === ".") {
+			handleNumber(value);
+		} else if (button.classList.contains("calculator__button--operator")) {
+			console.log(value);
+		} else if (button.classList.contains("calculator__button--equal")) {
+			console.log("equals");
+		} else if (button.classList.contains("calculator__button--clear")) {
+			console.log("clear");
+		} else if (button.classList.contains("calculator__button--delete")) {
+			console.log("delete");
+		}
+	});
+});
+
+const getSymbol = (operation) => {
+	const symbols = {
+		add: "+",
+		substract: "-",
+		multiply: "x",
+		divide: "÷",
+	};
+	return symbols[operation];
+};
+
+const handleNumber = (number) => {
+	if (number === "." && currentInput.includes(".")) return;
+	if (currentInput === "0" && number === "0") return;
+
+	if (currentInput === "0" && number !== ".") {
+		currentInput = number;
+	} else {
+		currentInput += number;
+	}
+
+	updateDisplay();
+};
+
+const updateDisplay = () => {
+	displayInput.textContent = currentInput || "0";
+
+	if (firstNumber && currentOperation) {
+		displayOperation.textContent = `${firstNumber} ${getSymbol(
+			currentOperation
+		)}`;
+	} else {
+		displayOperation.textContent = "";
+	}
+};
 
 const add = (number1, number2) => {
 	return number1 + number2;
@@ -30,6 +90,3 @@ const calculator = (number1, number2) => {
 				: divide(number1, number2);
 	}
 };
-
-currentOperation = "divide";
-console.log(calculator(1, 2));
