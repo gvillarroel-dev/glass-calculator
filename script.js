@@ -136,8 +136,6 @@ const calculator = (number1, number2) => {
 		case "multiply":
 			return multiply(number1, number2);
 		case "divide":
-			return number2 === 0
-				? "ERROR: zero division invalid"
-				: divide(number1, number2);
+			return number2 === 0 ? "ERROR: division by zero" : divide(number1, number2);
 	}
 };
