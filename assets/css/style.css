@@ -46,7 +46,7 @@ body {
 }
 
 .app {
-	width: 80%;
+	width: 100%;
 	height: 90dvh;
 	margin-top: 1rem;
 
@@ -56,9 +56,10 @@ body {
 }
 
 .calculator {
-	width: 100%;
-	max-width: 500px;
+	width: 90%;
+	max-width: 450px;
 	height: 100%;
+	max-height: 630px;
 	padding: 1rem;
 	border-radius: 30px;
 
@@ -90,14 +91,14 @@ body {
 	width: 100%;
 	height: 40px;
 	text-align: right;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .calculator__input {
 	font-size: clamp(2.2rem, 0.3rem + 2vw, 2.2rem);
 	margin-top: 2.2rem;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 	direction: ltr;
 }
 
